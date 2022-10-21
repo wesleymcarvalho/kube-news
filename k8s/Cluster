@@ -1,0 +1,1 @@
+k3d cluster create meucluster -p "80:30000@loadbalancer"
