@@ -1,1 +1,15 @@
 k3d cluster create meucluster -p "80:30000@loadbalancer"
+
+docker build wesleymcarvalho/<versao>
+
+docker push wesleymcarvalho/<versao>
+
+
+ver logs:
+
+-pod rodando
+kubectl logs -f nginx-7d8b49557c-c2lx9
+
+
+-pod não iniciado
+kubectl logs postgre-584d6cf887-82rq2 --previous
