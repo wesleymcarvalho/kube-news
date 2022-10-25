@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: wesleymcarvalho/kube-news:v2
+        image: wesleymcarvalho/kube-news:v5
         resources:
           limits:
             memory: "128Mi"
@@ -68,6 +68,10 @@ spec:
           value: "Pg@1234"
         - name: DB_HOST
           value: "postgre" #nome do service do banco do postgre
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name        
 ---
 apiVersion: v1
 kind: Service
