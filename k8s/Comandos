@@ -13,3 +13,6 @@ kubectl logs -f nginx-7d8b49557c-c2lx9
 
 -pod não iniciado
 kubectl logs postgre-584d6cf887-82rq2 --previous
+
+
+terraform init -- para cada proviver incluido no aquivo local_file , digital ocena
