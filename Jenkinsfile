@@ -1,10 +1,11 @@
 pipeline{
     agent any
 
+    environment{
+        tag_version = "v${env.BUILD_ID}"
+    }
+
     stages{
-        environment{
-            tag_version = "v${env.BUILD_ID}"
-        }
         stage ('Build Docker Image'){
             steps{
                 script {
