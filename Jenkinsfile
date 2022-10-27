@@ -2,10 +2,13 @@ pipeline{
     agent any
 
     stages{
+        environment{
+            tag_version = "v${env.BUILD_ID}"
+        }
         stage ('Build Docker Image'){
             steps{
                 script {
-                    dockerimg = docker.build("wesleymcarvalho/kube-news:v${env.BUILD_ID}", "-f ./src/Dockerfile ./src")
+                    dockerimg = docker.build("wesleymcarvalho/kube-news:${tag_version}", "-f ./src/Dockerfile ./src")
                 }
             }
         }
@@ -15,16 +18,13 @@ pipeline{
                 script{
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
                         dockerimg.push('latest')
-                        dockerimg.push("${env.BUILD_ID}")
+                        dockerimg.push("${tag_version}")
                     }                    
                 }
             }
         }
 
         stage ('Deploy Kubernets') {
-            environment{
-                tag_version = "${env.BUILD_ID}"
-            }
             steps{
                 withKubeConfig([credentialsId: 'kube_config']){
                     sh 'sed -i "s/{{TAG_VERSAO}}/$tag_version/g" ./k8s/Deployment.yaml'
