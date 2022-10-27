@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: wesleymcarvalho/kube-news:v5
+        image: wesleymcarvalho/kube-news:v{{TAG_VERSAO}}
         resources:
           limits:
             memory: "128Mi"
