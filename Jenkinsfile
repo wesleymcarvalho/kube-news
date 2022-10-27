@@ -15,8 +15,8 @@ pipeline{
             steps{
                 script{
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
-                        dockerimg.Push('latest')
-                        dockerimg.Push("${env.BUILD_ID}")
+                        dockerimg.push('latest')
+                        dockerimg.push("${env.BUILD_ID}")
                     }                    
                 }
             }
