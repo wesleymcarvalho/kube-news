@@ -18,3 +18,9 @@ kubectl logs postgre-584d6cf887-82rq2 --previous
 terraform init -- para cada proviver incluido no aquivo local_file , digital ocena
 
 terraform apply -- na pasta no main.rf para criar a estrutura de kubernets na nuvem
+
+
+
+
+--pegar senha grafana
+kubectl get secret grafana -o jsonpath="{.data.admin-password}" | base64 --decode
